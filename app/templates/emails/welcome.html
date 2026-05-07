@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Blog CMS</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background-color: #6366f1; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+        <h1 style="margin: 0;">Welcome to Blog CMS!</h1>
+    </div>
+    
+    <div style="background-color: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
+        <p>Hi <strong>{{ user.username }}</strong>,</p>
+        
+        <p>Thank you for registering with Blog CMS! We're excited to have you join our community.</p>
+        
+        <p>To complete your registration and activate your account, please confirm your email address by clicking the button below:</p>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ confirm_url }}" 
+               style="display: inline-block; background-color: #6366f1; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Confirm Email Address
+            </a>
+        </div>
+        
+        <p style="color: #6b7280; font-size: 14px;">
+            This link will expire in 1 hour. If you didn't create an account, you can safely ignore this email.
+        </p>
+        
+        <p style="color: #6b7280; font-size: 14px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+            If the button doesn't work, copy and paste this link into your browser:<br>
+            <a href="{{ confirm_url }}" style="color: #6366f1; word-break: break-all;">{{ confirm_url }}</a>
+        </p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px; color: #9ca3af; font-size: 12px;">
+        <p>© 2024 Blog CMS. All rights reserved.</p>
+    </div>
+</body>
+</html>

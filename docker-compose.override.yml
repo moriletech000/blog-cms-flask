@@ -1,0 +1,29 @@
+version: '3.9'
+
+# Development overrides
+services:
+  flask:
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    volumes:
+      - .:/app
+      - ./app/static/uploads:/app/app/static/uploads
+    ports:
+      - "5000:5000"
+    command: flask run --host=0.0.0.0 --port=5000 --debug
+
+  celery:
+    volumes:
+      - .:/app
+      - ./app/static/uploads:/app/app/static/uploads
+    command: celery -A app.extensions.celery worker --loglevel=debug --concurrency=2
+
+  celery-beat:
+    volumes:
+      - .:/app
+
+  # Remove nginx in development - access Flask directly
+  nginx:
+    profiles:
+      - production

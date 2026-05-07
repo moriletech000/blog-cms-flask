@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Comment on Your Post</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background-color: #6366f1; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+        <h1 style="margin: 0;">New Comment on Your Post</h1>
+    </div>
+    
+    <div style="background-color: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
+        <p>Hi <strong>{{ post.author.username }}</strong>,</p>
+        
+        <p><strong>{{ comment.author.username }}</strong> commented on your post "<strong>{{ post.title }}</strong>":</p>
+        
+        <div style="background-color: white; padding: 20px; border-left: 4px solid #6366f1; margin: 20px 0; border-radius: 4px;">
+            <p style="margin: 0; color: #4b5563;">{{ comment.body }}</p>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ post_url }}" 
+               style="display: inline-block; background-color: #6366f1; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                View Comment & Reply
+            </a>
+        </div>
+        
+        <p style="color: #6b7280; font-size: 14px;">
+            You're receiving this email because someone commented on your post. You can manage your notification preferences in your account settings.
+        </p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px; color: #9ca3af; font-size: 12px;">
+        <p>© 2024 Blog CMS. All rights reserved.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,233 @@
+/* Custom CSS overrides for the blog system */
+
+/* Rich text editor styles */
+.prose {
+    max-width: none;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.prose p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.prose blockquote {
+    border-left: 4px solid #6366f1;
+    padding-left: 1rem;
+    font-style: italic;
+    color: #6b7280;
+}
+
+.prose code {
+    background-color: #f3f4f6;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+}
+
+.prose pre {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+}
+
+.prose pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+/* Image upload preview */
+.image-preview {
+    max-width: 300px;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    border: 2px solid #e5e7eb;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #f3f4f6;
+    border-radius: 50%;
+    border-top-color: #6366f1;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Like button animation */
+.like-button {
+    transition: all 0.2s ease-in-out;
+}
+
+.like-button:hover {
+    transform: scale(1.1);
+}
+
+.like-button.liked {
+    color: #ef4444;
+}
+
+/* Comment threading */
+.comment-reply {
+    margin-left: 2rem;
+    border-left: 2px solid #e5e7eb;
+    padding-left: 1rem;
+}
+
+/* Tag pills */
+.tag-pill {
+    transition: all 0.2s ease-in-out;
+}
+
+.tag-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Status badges */
+.status-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-draft {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.status-published {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.status-archived {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Form enhancements */
+.form-input:focus {
+    ring-color: #6366f1;
+    border-color: #6366f1;
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Mobile menu animation */
+.mobile-menu-enter {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.mobile-menu-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 100ms ease-out, transform 100ms ease-out;
+}
+
+.mobile-menu-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.mobile-menu-exit-active {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 75ms ease-in, transform 75ms ease-in;
+}
+
+/* Search highlighting */
+.search-highlight {
+    background-color: #fef08a;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+}
+
+/* Responsive images */
+.responsive-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .print-break-inside-avoid {
+        break-inside: avoid;
+    }
+}
+
+/* Dark mode support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+    .dark-mode-text {
+        color: #f9fafb;
+    }
+    
+    .dark-mode-bg {
+        background-color: #1f2937;
+    }
+}
+
+/* Accessibility improvements */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus styles for better accessibility */
+.focus-visible:focus {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}

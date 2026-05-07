@@ -1,0 +1,111 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: blogdb
+      POSTGRES_USER: bloguser
+      POSTGRES_PASSWORD: blogpass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bloguser -d blogdb"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - blog_network
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - blog_network
+
+  flask:
+    build: 
+      context: .
+      dockerfile: docker/flask/Dockerfile
+    command: gunicorn wsgi:app -w 4 -k gevent --timeout 120 -b 0.0.0.0:5000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - ./app/static/uploads:/app/app/static/uploads
+    networks:
+      - blog_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  celery:
+    build: 
+      context: .
+      dockerfile: docker/celery/Dockerfile
+    command: celery -A app.extensions.celery worker --loglevel=info --concurrency=4
+    depends_on:
+      flask:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - ./app/static/uploads:/app/app/static/uploads
+    networks:
+      - blog_network
+
+  celery-beat:
+    build: 
+      context: .
+      dockerfile: docker/celery/Dockerfile
+    command: celery -A app.extensions.celery beat --loglevel=info --scheduler celery.beat:PersistentScheduler
+    depends_on:
+      - celery
+    env_file:
+      - .env
+    volumes:
+      - celery_beat_data:/app/celerybeat-schedule
+    networks:
+      - blog_network
+
+  nginx:
+    build: 
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      flask:
+        condition: service_healthy
+    volumes:
+      - ./app/static:/static:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    networks:
+      - blog_network
+
+volumes:
+  postgres_data:
+  redis_data:
+  celery_beat_data:
+
+networks:
+  blog_network:
+    driver: bridge
