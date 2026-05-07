@@ -1,8 +1,18 @@
 # Blog CMS - Production-Ready Flask Blog System
 
+[![Python Version](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Flask Version](https://img.shields.io/badge/flask-3.0+-green.svg)](https://flask.palletsprojects.com/)
+[![PostgreSQL](https://img.shields.io/badge/postgresql-16+-blue.svg)](https://www.postgresql.org/)
+[![Redis](https://img.shields.io/badge/redis-7+-red.svg)](https://redis.io/)
+[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Code Style](https://img.shields.io/badge/code%20style-PEP8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
+
 A complete, production-ready blog management system built with Flask 3.x, featuring a modern tech stack, comprehensive API, background task processing, and Docker deployment.
 
-## 🚀 Features
+---
+
+## Features
 
 ### Core Functionality
 - **Multi-user blog platform** with role-based access control (Reader, Editor, Admin)
@@ -26,14 +36,14 @@ A complete, production-ready blog management system built with Flask 3.x, featur
 - **Comprehensive test suite** with pytest
 - **Error tracking** with Sentry integration
 
-## 📋 Requirements
+## Requirements
 
 - Python 3.12+
 - PostgreSQL 16+
 - Redis 7+
 - Docker & Docker Compose (for containerized deployment)
 
-## 🛠️ Installation
+## Installation
 
 ### Option 1: Docker Compose (Recommended)
 
@@ -104,7 +114,7 @@ celery -A app.extensions.celery worker --loglevel=info
 celery -A app.extensions.celery beat --loglevel=info
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 blog-system/
@@ -132,7 +142,7 @@ blog-system/
 └── README.md                    # This file
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -161,7 +171,7 @@ JWT_SECRET_KEY=your-jwt-secret
 JWT_ACCESS_TOKEN_EXPIRES=3600
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 The API is fully documented with Swagger UI, available at `/api/v1/docs` when the application is running.
 
@@ -189,7 +199,7 @@ curl http://localhost/api/v1/posts \
 - `GET /api/v1/tags` - List tags
 - `GET /api/v1/users/me` - Get current user profile
 
-## 🧪 Testing
+## Testing
 
 Run the test suite:
 
@@ -204,7 +214,7 @@ pytest --cov=app --cov-report=html
 pytest tests/test_auth.py -v
 ```
 
-## 🔐 Security Features
+## Security Features
 
 - **CSRF protection** on all forms
 - **Password hashing** with PBKDF2-SHA256
@@ -215,7 +225,7 @@ pytest tests/test_auth.py -v
 - **File upload validation** with type and size checks
 - **Security headers** via Nginx
 
-## 📊 Database Schema
+## Database Schema
 
 ### Key Models
 
@@ -235,7 +245,7 @@ pytest tests/test_auth.py -v
 - Post → Comments (one-to-many)
 - Comment → Comment (self-referential for replies)
 
-## 🎯 CLI Commands
+## CLI Commands
 
 ```bash
 # Database
@@ -252,7 +262,7 @@ flask flush-view-counters     # Flush view counts to DB
 flask create-test-data --count 20  # Generate test posts
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Production Checklist
 
@@ -280,7 +290,7 @@ flask create-test-data --count 20  # Generate test posts
 docker compose -f docker-compose.yml up -d
 ```
 
-## 📈 Performance Optimization
+## Performance Optimization
 
 - **Redis caching** for frequently accessed data
 - **Database indexing** on commonly queried fields
@@ -289,7 +299,7 @@ docker compose -f docker-compose.yml up -d
 - **Connection pooling** for database connections
 - **Celery task queue** for async operations
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -320,11 +330,11 @@ docker compose logs celery | grep email
 python -c "import smtplib; smtplib.SMTP('smtp.gmail.com', 587).starttls()"
 ```
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -334,14 +344,14 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📧 Support
+## Support
 
 For issues and questions:
 - Open an issue on GitHub
 - Check existing documentation
 - Review API documentation at `/api/v1/docs`
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Built with:
 - Flask 3.x
@@ -354,8 +364,10 @@ Built with:
 
 ---
 
-**Default Admin Credentials** (after running `flask seed-db`):
+## Default Credentials
+
+**After running `flask seed-db`:**
 - Email: admin@blog.com
 - Password: admin123
 
-**⚠️ Change these credentials immediately in production!**
+> **Warning:** Change these credentials immediately in production!
