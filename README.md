@@ -118,28 +118,28 @@ celery -A app.extensions.celery beat --loglevel=info
 
 ```
 blog-system/
-├── app/
-│   ├── __init__.py              # Application factory
-│   ├── config.py                # Configuration classes
-│   ├── extensions.py            # Flask extensions
-│   ├── models/                  # Database models
-│   ├── blueprints/              # Route blueprints
-│   │   ├── auth/               # Authentication routes
-│   │   ├── blog/               # Blog routes
-│   │   ├── admin/              # Admin panel routes
-│   │   └── api/                # REST API routes
-│   ├── schemas/                 # Marshmallow schemas
-│   ├── tasks/                   # Celery tasks
-│   ├── utils/                   # Utility functions
-│   ├── templates/               # Jinja2 templates
-│   └── static/                  # Static files
-├── tests/                       # Test suite
-├── migrations/                  # Database migrations
-├── docker/                      # Dockerfiles
-├── nginx/                       # Nginx configuration
-├── docker-compose.yml           # Docker Compose config
-├── requirements.txt             # Python dependencies
-└── README.md                    # This file
+ app/
+    __init__.py              # Application factory
+    config.py                # Configuration classes
+    extensions.py            # Flask extensions
+    models/                  # Database models
+    blueprints/              # Route blueprints
+       auth/               # Authentication routes
+       blog/               # Blog routes
+       admin/              # Admin panel routes
+       api/                # REST API routes
+    schemas/                 # Marshmallow schemas
+    tasks/                   # Celery tasks
+    utils/                   # Utility functions
+    templates/               # Jinja2 templates
+    static/                  # Static files
+ tests/                       # Test suite
+ migrations/                  # Database migrations
+ docker/                      # Dockerfiles
+ nginx/                       # Nginx configuration
+ docker-compose.yml           # Docker Compose config
+ requirements.txt             # Python dependencies
+ README.md                    # This file
 ```
 
 ## Configuration
